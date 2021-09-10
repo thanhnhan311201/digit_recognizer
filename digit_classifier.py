@@ -18,7 +18,7 @@ def image_processing(img):
     resized_img = cv2.resize(img, (28, 28), interpolation = cv2.INTER_AREA)
     gray_img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY)
     (thresh, bw_img) = cv2.threshold(gray_img, 127, 1, cv2.THRESH_BINARY_INV)
-    bw_img = np.array([np.array(bw_img.flatten())])
+    bw_img = bw_img.reshape(-1,28,28,1)
     
     return bw_img
 
@@ -57,11 +57,16 @@ def predict_image(img):
 if __name__ == '__main__':
     in_path = 'input/'
     all_images = read_image_path(in_path)
-    
-    img = np.array(cv2.imread('input/img_9.png'))
-    res = predict_image(img)
+    for image in all_images:
+        print(image)
+        img = np.array(cv2.imread(image))
+        res = predict_image(img)
+        print(res)
 
-    print(res)
+    
+    # img = np.array(cv2.imread('input/img_9.png'))
+    # res = predict_image(img)
+    # print(res)
     
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
