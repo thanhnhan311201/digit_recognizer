@@ -2,3 +2,4 @@ tensorflow
 opencv-python
 numpy
 glob2
+flask
