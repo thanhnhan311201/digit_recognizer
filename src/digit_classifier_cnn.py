@@ -5,6 +5,8 @@ import cv2
 import numpy as np
 import glob2
 import os
+# from PIL import Image, ImageChops
+# import matplotlib.pyplot as plt
 
 def read_image_path(path):
     all_images = []
@@ -13,6 +15,13 @@ def read_image_path(path):
         all_images += image
     
     return all_images
+
+def trim(im):
+    bg = Image.new(im.mode, im.size, im.getpixel((0,0)))
+    diff = ImageChops.difference(im, bg)
+    diff = ImageChops.add(diff, diff, 3.0, -100)
+    bbox = diff.getbbox()
+    return im.crop(bbox)
 
 def image_processing(img):
     resized_img = cv2.resize(img, (28, 28), interpolation = cv2.INTER_AREA)

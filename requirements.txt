@@ -1,5 +1,7 @@
-tensorflow
-opencv-python
-numpy
-glob2
-flask
+tensorflow==2.6.0
+opencv-python==4.5.3.56
+numpy==1.19.5
+glob2==0.4.1
+flask==2.0.1
+Pillow==8.3.2
+matplotlib==3.4.3
